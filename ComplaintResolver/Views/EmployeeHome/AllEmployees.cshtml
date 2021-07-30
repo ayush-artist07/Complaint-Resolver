@@ -1,0 +1,92 @@
+﻿
+@model IEnumerable<ComplaintResolver.Model.EmployeeDetail>
+
+@{
+    ViewBag.Title = "AllEmployees";
+}
+
+<h2>AllEmployees</h2>
+
+<p>
+    @Html.ActionLink("Add New", "Register", "Employee", null, new { @class = "btn btn-info" })
+</p>
+<table class="table" id="tableId">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayName("Pending")
+            </th>
+            <th>
+                @Html.DisplayName("Completed")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+<tbody>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.PendingComplaints)
+        </td>
+        <td class="text-center">
+            @Html.DisplayFor(modelItem => item.CompletedComplaints)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeId }, new { @class = "btn btn-info" })
+            @Html.ActionLink("Delete", "DeleteEmployee", new { id = item.EmployeeId }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+</tbody>
+    }
+
+</table>
+
+@section Css{
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+@section Scripts{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('#tableId').DataTable();
+        });
+
+    </script>
+}
+

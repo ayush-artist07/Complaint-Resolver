@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Universal Electronics</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    @RenderSection("Css", false)
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="/UserHome/Index" class="navbar-brand">
+                        <img src="~/Content/Images/brand_logo2.png" alt="Brand Logo" width="100%" height="100%" />
+                    </a>
+                </div>
+                <div class="col-md-9">
+                    <h4 class="display-4" id="heading"><b>Welcome to Complaint Resolver</b></h4>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+
+
+                    @if (User.IsInRole("Serviceman"))
+                    {
+
+                        @Html.ActionLink("Home", "Index", "EmployeeHome", new { area = "" }, new { @class = "navbar-brand", @style = "color:white" })
+
+                        <li class="nav-item active">
+                            @Html.ActionLink("All Complaints", "ServicemanAllComplaints", "EmployeeHome", null, new { @class = "nav-link", @style = "color:white" })
+                        </li>
+
+                        <li class="nav-item active">
+                            @Html.ActionLink("Pending Complaints", "ServicemanPendingComplaints", "EmployeeHome", null, new { @class = "nav-link", @style = "color:white" })
+                        </li>
+
+                        <li class="nav-item active">
+                            @Html.ActionLink("Completed Complaints", "ServicemanCompletedComplaints", "EmployeeHome", null, new { @class = "nav-link", @style = "color:white" })
+                        </li>
+                    }
+
+                    else if (User.IsInRole("Admin"))
+                    {
+
+                        @Html.ActionLink("Home", "Index", "EmployeeHome", new { area = "" }, new { @class = "navbar-brand", @style = "color:white" })
+
+                        <li class="nav-item active">
+                            @Html.ActionLink("All Complaints", "AllComplaints", "EmployeeHome", null, new { @class = "nav-link", @style = "color:white" })
+                        </li>
+
+                        <li class="nav-item active">
+                            @Html.ActionLink("Pending Complaints", "PendingComplaints", "EmployeeHome", null, new { @class = "nav-link", @style = "color:white" })
+                        </li>
+
+                        <li class="nav-item active">
+                            @Html.ActionLink("Completed Complaints", "CompletedComplaints", "EmployeeHome", null, new { @class = "nav-link", @style = "color:white" })
+                        </li>
+
+                        <li class="nav-item active">
+                            @Html.ActionLink("Employee Details", "AllEmployees", "EmployeeHome", null, new { @class = "nav-link", @style = "color:white" })
+                        </li>
+
+                        <li class="nav-item active">
+                            @Html.ActionLink("Add New", "Register", "EmployeeAccount", null, new { @class = "nav-link", @style = "color:white" })
+                        </li>
+                    }
+                    else
+                    {
+
+                        @Html.ActionLink("Home", "Index", "UserHome", new { area = "" }, new { @class = "navbar-brand", @style = "color:white" })
+
+                        <li class="nav-item">
+                            @Html.ActionLink("Complaint Form", "Complaint", "UserHome", null, new { @class = "nav-link", @style = "color:white" })
+                        </li>
+
+                        <li class="nav-item">
+                            @Html.ActionLink("All Complaints", "GetAllComplaints", "UserHome", null, new { @class = "nav-link", @style = "color:white" })
+                        </li>
+
+                        <li class="nav-item">
+                            @Html.ActionLink("Pending Complaints", "GetPendingComplaints", "UserHome", null, new { @class = "nav-link", @style = "color:white" })
+                        </li>
+
+                        <li class="nav-item">
+                            @Html.ActionLink("Feedback", "GetAllComplaints", "UserHome",null, new { @class = "nav-link", @style = "color:white" })
+                        </li>
+
+                        <li class="nav-item active">
+                            @Html.ActionLink("About Us", "AboutUs", "UserHome", null, new { @class = "nav-link", @style = "color:white" })
+                        </li>
+
+                    }
+
+
+                    <li class="nav-item active">
+                        <a href="" class="nav-link" style="color:white;">
+
+                            @if (User.Identity.Name.Length > 20)
+                            {
+                                string temp = User.Identity.Name;
+                                <text>Dear - @temp.Substring(0, 20)</text>
+                            }
+                            else
+                            {
+                                <text>Dear - @User.Identity.Name</text>
+                            }
+
+                        </a>
+
+
+                    </li>
+
+                    <li class="nav-item menu">
+                        @Html.ActionLink("Log Out", "Logout", "UserAccount", null, new { @class = "nav-link", @style = "color:white" })
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    }
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <hr />
+    <!-- Site footer -->
+    <footer class="site-footer container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h6>About</h6>
+                    <p class="text-justify">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative  to help the upcoming programmers with the code. Scanfcode focuses on providing the most efficient code or snippets as the code wants to be simple. We will help programmers build up concepts in different programming languages that include C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.</p>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <h6>Categories</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Mobile</a></li>
+                        <li><a href="#">Refrigrators</a></li>
+                        <li><a href="#">AC</a></li>
+                        <li><a href="#">Washing Machine</a></li>
+                        <li><a href="#">Coolers</a></li>
+                        <li><a href="">Laptops</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <h6>Quick Links</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Contribute</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">
+                        Copyright &copy; 2021 All Rights Reserved by
+                        <a href="#">Scanfcode</a>.
+                    </p>
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("Scripts", false)
+</body>
+</html>

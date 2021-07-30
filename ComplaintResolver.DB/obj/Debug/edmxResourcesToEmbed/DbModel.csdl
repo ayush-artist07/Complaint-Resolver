@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="testdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="complaint">
+    <Key>
+      <PropertyRef Name="Complaint_Id" />
+    </Key>
+    <Property Name="User_Id" Type="Int32" Nullable="false" />
+    <Property Name="Date_assigned" Type="DateTime" Nullable="false" />
+    <Property Name="ProductType" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ComplaintType" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ComplaintDescription" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="Int64" Nullable="false" />
+    <Property Name="ReplyComments" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="Employee_id" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" />
+    <Property Name="Complaint_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="users" Relationship="Self.complaint_ibfk_1" FromRole="complaint" ToRole="users" />
+    <NavigationProperty Name="employee" Relationship="Self.complaint_ibfk_3" FromRole="complaint" ToRole="employee" />
+    <NavigationProperty Name="feedback" Relationship="Self.fk_feedback_Complaint" FromRole="complaint" ToRole="feedback" />
+  </EntityType>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="Employee_Id" />
+    </Key>
+    <Property Name="Employee_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone" Type="Int64" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Department" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" />
+    <Property Name="PendingComplaints" Type="Int32" Nullable="false" />
+    <Property Name="CompletedComplaints" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="complaint" Relationship="Self.complaint_ibfk_3" FromRole="employee" ToRole="complaint" />
+    <NavigationProperty Name="employee_role" Relationship="Self.employee_role_Cascade" FromRole="employee" ToRole="employee_role" />
+  </EntityType>
+  <EntityType Name="employee_role">
+    <Key>
+      <PropertyRef Name="Employee_Role_Id" />
+    </Key>
+    <Property Name="Employee_Role_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Employee_Id" Type="Int32" />
+    <Property Name="Role" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="employee" Relationship="Self.employee_role_Cascade" FromRole="employee_role" ToRole="employee" />
+  </EntityType>
+  <EntityType Name="feedback">
+    <Key>
+      <PropertyRef Name="Feedback_Id" />
+    </Key>
+    <Property Name="Feedback_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Message" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Complaint_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="complaint" Relationship="Self.fk_feedback_Complaint" FromRole="feedback" ToRole="complaint" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmailId" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DateOfBirth" Type="DateTime" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsEmailVerified" Type="SByte" Nullable="false" />
+    <Property Name="ActivationCode" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="complaint" Relationship="Self.complaint_ibfk_1" FromRole="users" ToRole="complaint" />
+  </EntityType>
+  <Association Name="complaint_ibfk_1">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="complaint" Type="Self.complaint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="complaint">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="complaint_ibfk_3">
+    <End Role="employee" Type="Self.employee" Multiplicity="1" />
+    <End Role="complaint" Type="Self.complaint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee">
+        <PropertyRef Name="Employee_Id" />
+      </Principal>
+      <Dependent Role="complaint">
+        <PropertyRef Name="Employee_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_feedback_Complaint">
+    <End Role="complaint" Type="Self.complaint" Multiplicity="1" />
+    <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="complaint">
+        <PropertyRef Name="Complaint_Id" />
+      </Principal>
+      <Dependent Role="feedback">
+        <PropertyRef Name="Complaint_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="employee_role_Cascade">
+    <End Role="employee" Type="Self.employee" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="employee_role" Type="Self.employee_role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee">
+        <PropertyRef Name="Employee_Id" />
+      </Principal>
+      <Dependent Role="employee_role">
+        <PropertyRef Name="Employee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="testdbEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="complaint" EntityType="Self.complaint" />
+    <EntitySet Name="employee" EntityType="Self.employee" />
+    <EntitySet Name="employee_role" EntityType="Self.employee_role" />
+    <EntitySet Name="feedback" EntityType="Self.feedback" />
+    <EntitySet Name="users" EntityType="Self.users" />
+    <AssociationSet Name="complaint_ibfk_1" Association="Self.complaint_ibfk_1">
+      <End Role="users" EntitySet="users" />
+      <End Role="complaint" EntitySet="complaint" />
+    </AssociationSet>
+    <AssociationSet Name="complaint_ibfk_3" Association="Self.complaint_ibfk_3">
+      <End Role="employee" EntitySet="employee" />
+      <End Role="complaint" EntitySet="complaint" />
+    </AssociationSet>
+    <AssociationSet Name="fk_feedback_Complaint" Association="Self.fk_feedback_Complaint">
+      <End Role="complaint" EntitySet="complaint" />
+      <End Role="feedback" EntitySet="feedback" />
+    </AssociationSet>
+    <AssociationSet Name="employee_role_Cascade" Association="Self.employee_role_Cascade">
+      <End Role="employee" EntitySet="employee" />
+      <End Role="employee_role" EntitySet="employee_role" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

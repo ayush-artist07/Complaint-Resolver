@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
+            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;height:13rem;">
+                <div class="card-header"><h5>New Complaint</h5></div>
+                <div class="card-body">
+                    <p class="card-text">
+                        @Html.ActionLink("Facing some issue with your universal electronics gadget. We are there to help you.Lodge new complaint. Click Here", "Complaint", "UserHome", null, new { @style = "color:white; text-decoration:none" })
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
+            <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;height:13rem;">
+                <div class="card-header"><h5>Get All Complaints</h5></div>
+                <div class="card-body">
+                    <p class="card-text">
+                        @Html.ActionLink("Get all the complaints that has been raised by you. With all the details. Click Here", "GetAllComplaints", "UserHome", null, new { @style = "color:white; text-decoration:none" })
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
+            <div class="card text-white bg-warning mb-3" style="max-width: 18rem; height: 13rem;">
+                <div class="card-header"><h5>Pending Complaints</h5></div>
+                <div class="card-body">
+                    <p class="card-text">
+                        @Html.ActionLink("Check all the complaints that are yet pending.", "GetPendingComplaints", "UserHome", null, new { @style = "color:white; text-decoration:none" })
+
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+
+        <div class="col-lg-6 col-sm-12 d-flex justify-content-center ">
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem; height: 13rem;">
+                <div class="card-header"><h5>Feedback</h5></div>
+                <div class="card-body">
+                    <p class="card-text">
+                        @Html.ActionLink("Provide us with your valuable feedback for the complaints you have lodged in past.Click Here", "GetAllComplaints", "UserHome", null, new { @style = "color:white; text-decoration:none" })
+
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-12 d-flex justify-content-center ">
+            <div class="card text-white bg-success mb-3" style="max-width: 18rem; height: 13rem;">
+                <div class="card-header"><h5>About Us</h5></div>
+                <div class="card-body">
+                    <p class="card-text">
+                        @Html.ActionLink("Enthusiastic to know more about us. Click Here", "AboutUs", "UserHome", null, new { @style = "color:white; text-decoration:none" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

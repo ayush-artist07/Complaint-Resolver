@@ -1,0 +1,121 @@
+﻿@model IEnumerable<ComplaintResolver.Model.ComplaintForm>
+
+@{
+    ViewBag.Title = "AllComplaints";
+}
+
+<h2>AllComplaints</h2>
+
+<table class="table mt-3" id="tableId">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Complaint_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date_assigned)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Complaint_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date_assigned)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", "UserHome", new { id = item.Complaint_id }, new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        </tbody>
+    }
+
+</table>
+
+
+@section Css{
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <style>
+
+        /*Using CSS for table*/
+        .demotbl {
+            border: 0px solid #69899F;
+        }
+
+        .demotbl th {
+            padding: 15px;
+            margin-left: 10px;
+            color: black;
+            border-bottom: 3px solid #9ED929;
+            background-color: steelblue !important;
+            background: -webkit-gradient( linear, left bottom, left top, color-stop(0.02, rgb(123,192,67)), color-stop(0.51, rgb(139,198,66)), color-stop(0.87, rgb(158,217,41)) );
+            background: -moz-linear-gradient( center bottom, rgb(123,192,67) 3%, rgb(139,198,66) 52%, rgb(158,217,41) 88% );
+            -webkit-border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -moz-border-radius: 5px 5px 0px 0px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .demotbl td {
+            width: 100px;
+            margin: 5px;
+            padding: 10px;
+            text-align: center;
+            vertical-align: top;
+            background-color: #D8F0FF;
+            border: 1px solid #BED3AB;
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            border-radius: 2px;
+            color: #666;
+            text-shadow: 1px 1px 1px #fff;
+        }
+    </style>
+}
+@section Scripts{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('#tableId').DataTable();
+        });
+
+    </script>
+}
+
+
+

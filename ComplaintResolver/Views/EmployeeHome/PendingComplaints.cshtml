@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ComplaintResolver.Model.ComplaintForm>
+
+@{
+    ViewBag.Title = "PendingComplaints";
+}
+
+<h2>PendingComplaints</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Complaint_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date_assigned)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_id)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Complaint_id)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_assigned)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee_id)
+            </td>
+            <td>
+                @if (User.IsInRole("Serviceman"))
+                {
+                    @Html.ActionLink("Reply", "Reply", "UserHome", new { id = item.Complaint_id }, new { @class = "btn btn-primary" })
+                }
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,117 @@
+﻿@model ComplaintResolver.Model.Login
+
+@{
+    ViewBag.Title = "Login";
+}
+
+
+@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status == false))
+{
+    <div class="alert alert-danger" style="margin-top:10px;">
+        <strong>Error !</strong>
+        @ViewBag.Message
+    </div>
+
+    @Html.ActionLink("Log In", "Login", "UserAccount", null, new { @class = "btn btn-info" })
+    <span class="ml-2"></span>
+
+    @Html.ActionLink("Register Now", "Register", "UserAccount", null, new { @class = "btn btn-dark" })
+
+}
+else
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+        <div class="form-horizontal mt-5">
+            <div class="form-row">
+                <div class="col-lg-6 col-sm-0 form-group">
+                    <img src="~/Content/Images/brand_logo.jpg" width="100%" height="auto" class="rounded" />
+                </div>
+
+                <div class="col-lg-6 col-sm-12 form-group border border-dark rounded">
+                    <div class="card mt-3">
+                        <h2 class="card-header text-center" style="background-color:brown">
+                            Login User
+                        </h2>
+                    </div>
+                    <div class="form-row mt-5">
+                        <div class="col-2">
+
+                        </div>
+                        <div class="col-10">
+                            <div class="row">
+                                @Html.LabelFor(model => model.EmailId, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-9">
+                                    @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row mt-2">
+                        <div class="col-2">
+
+                        </div>
+                        <div class="col-10">
+                            <div class="row">
+                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-9">
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-row mt-4">
+                        <div class="col-2">
+
+                        </div>
+                        <div class="col-10">
+                            <div class="row">
+                                @Html.LabelFor(model => model.RememberMe, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.RememberMe)
+                                        @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row mt-2">
+                        <div class="col-md-offset-2 col-md-12 text-center">
+                            <input type="submit" value="Login" class="btn btn-primary" />
+                        </div>
+                    </div>
+
+                    <div class="form-row mt-3 mb-3">
+                        <div class="col-md-6 text-center mt-2">
+                            @Html.ActionLink("New User", "Register", "UserAccount", null, new { @class = "btn btn-dark" })
+                        </div>
+                        <div class="col-md-6 text-center mt-2">
+                            @Html.ActionLink("Log in as Service Man/ Admin", "LoginServiceMan", "EmployeeAccount", null, new { @class = "btn btn-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+}
+
+@section Scripts{
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+}

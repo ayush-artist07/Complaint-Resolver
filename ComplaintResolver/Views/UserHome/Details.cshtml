@@ -1,0 +1,123 @@
+﻿@model ComplaintResolver.Model.ComplaintForm
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Complaint</h4>
+    <hr />
+    <dl>
+        <div class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Complaint_id)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Complaint_id)
+        </dd>
+</div>
+
+<div class="row">
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.User_Id)
+    </dt>
+
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.User_Id)
+    </dd>
+</div>
+
+<div class="row">
+
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.ProductType)
+    </dt>
+
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.ProductType)
+    </dd>
+</div>
+
+<div class="row">
+
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.ComplaintDescription)
+    </dt>
+
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.ComplaintDescription)
+    </dd>
+</div>
+
+<div class="row">
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.Date_assigned)
+    </dt>
+
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.Date_assigned)
+    </dd>
+</div>
+
+<div class="row">
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.PhoneNumber)
+    </dt>
+
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.PhoneNumber)
+    </dd>
+</div>
+
+<div class="row">
+
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.Employee_id)
+    </dt>
+
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.Employee_id)
+    </dd>
+</div>
+
+<div class="row">
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.Employee_Name)
+    </dt>
+
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.Employee_Name)
+    </dd>
+
+</div>
+
+<div class="row">
+
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.ReplyComments)
+    </dt>
+
+
+    <dd class="col-sm-9">
+        @Html.DisplayFor(model => model.ReplyComments)
+    </dd>
+</div>
+
+    </dl>
+</div>
+
+<p>
+    @if (User.IsInRole("Admin") || User.IsInRole("ServiceMan"))
+    {
+
+        @Html.ActionLink("Back to List", "AllComplaints", "EmployeeHome", null, new { @class = "btn btn-info" })
+    }
+    else
+    {
+
+        @Html.ActionLink("Back to List", "GetAllComplaints", "UserHome", null, new { @class = "btn btn-info" })
+    }
+</p>

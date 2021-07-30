@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ComplaintResolver.Model.ComplaintForm>
+
+@{
+    ViewBag.Title = "ServicemanAllComplaints";
+}
+
+<h2>All Complaints</h2>
+
+
+<table class="table" id="tableId">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Complaint_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date_assigned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComplaintDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReplyComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_id)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Complaint_id)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Date_assigned)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComplaintDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReplyComments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee_id)
+            </td>
+        </tr>
+    }
+
+</table>
+@section Css{
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+@section Scripts{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('#tableId').DataTable();
+        });
+
+    </script>
+}

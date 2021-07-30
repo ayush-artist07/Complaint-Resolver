@@ -1,0 +1,141 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (User.IsInRole("Serviceman"))
+{
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;height:13rem;">
+                    <div class="card-header"><h5>My Profile</h5></div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            @Html.ActionLink("Hey Check your profile. Click Here", "Profile", "EmployeeHome", null, new { @style = "color:white; text-decoration:none" })
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
+                <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;height:13rem;">
+                    <div class="card-header"><h5>Pending Complaints</h5></div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            @Html.ActionLink("You need to check out these complains and resolve as soon as possible.To check Click Here", "ServicemanPendingComplaints", "EmployeeHome", null, new { @style = "color:white; text-decoration:none" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
+                <div class="card text-white bg-warning mb-3" style="max-width: 18rem; height: 13rem;">
+                    <div class="card-header"><h5>Completed Complains</h5></div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            @Html.ActionLink("Check the complaints that has been completd by you", "ServicemanCompletedComplaints", "EmployeeHome", null, new { @style = "color:white; text-decoration:none" })
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-6 d-flex justify-content-center">
+                <div class="card text-white bg-info mb-3" style="max-width: 18rem; height: 13rem;">
+                    <div class="card-header"><h5>All Complaints</h5></div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            @Html.ActionLink("Check All the complaints that has been assigned to you", "ServicemanAllComplaints", "EmployeeHome", null, new { @style = "color:white; text-decoration:none" })
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;height:13rem;">
+                    <div class="card-header"><h5>My Profile</h5></div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            @Html.ActionLink("Hey Check your profile. Click Here", "Profile", "EmployeeHome", null, new { @style = "color:white; text-decoration:none" })
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
+                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;height:13rem;">
+                    <div class="card-header"><h5>New Employee +</h5></div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            @Html.ActionLink("Add new Employee to Admin/Serviceman. Click Here", "Register", "EmployeeHome", null, new { @style = "color:white; text-decoration:none" })
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
+                <div class="card text-white bg-info mb-3" style="max-width: 18rem;height:13rem;">
+                    <div class="card-header"><h5>All Employees</h5></div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            @Html.ActionLink("Check all the employees in the organization. Click Here", "AllEmployees", "EmployeeHome", null, new { @style = "color:white; text-decoration:none" })
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
+                <div class="card text-white bg-light mb-3" style="max-width: 18rem;height:13rem;">
+                    <div class="card-header" style="color:black"><h5>Total Complaints</h5></div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            @Html.ActionLink("Check All the complaints in the database. Click Here", "AllComplaints", "EmployeeHome", null, new { @style = "color:black; text-decoration:none" })
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
+                <div class="card text-white bg-danger mb-3" style="max-width: 18rem;height:13rem;">
+                    <div class="card-header"><h5>Pending Complaints</h5></div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            @Html.ActionLink("Check the pending complaints. Click Here", "PendingComplaints", "EmployeeHome", null, new { @style = "color:white; text-decoration:none" })
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
+                <div class="card text-white bg-warning mb-3" style="max-width: 18rem;height:13rem;">
+                    <div class="card-header"><h5>Feedbacks Received</h5></div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            @Html.ActionLink("Check employee feedbacks in the organization. Click Here", "AllFeedbacksRecieved", "EmployeeHome", null, new { @style = "color:white; text-decoration:none" })
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+
+
+
+

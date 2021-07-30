@@ -1,0 +1,138 @@
+﻿@model ComplaintResolver.Model.EmployeeDetail
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<h2 class="display-4">My Profile</h2>
+
+<div>
+    <hr />
+    <div class="container bg-info">
+        <div class="row">
+            <div class="col-lg-12 d-flex justify-content-center">
+                <div class="card border-dark rounded">
+                    <img class="card-img-top" src="~/Content/Images/ProfileIcon.jpg" alt="Profile" width="70%" />
+                    <div class="card-body">
+                        <hr />
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <dt>
+                                    @Html.DisplayName("Employee Id")
+                                </dt>
+                            </div>
+                            <div class="col-lg-6">
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.EmployeeId)
+                                </dd>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </dt>
+                            </div>
+                            <div class="col-lg-6">
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Name)
+                                </dd>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </dt>
+                            </div>
+                            <div class="col-lg-6">
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Email)
+                                </dd>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.employeecountry)
+                                </dt>
+                            </div>
+                            <div class="col-lg-6">
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.employeecountry)
+                                </dd>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Department)
+                                </dt>
+                            </div>
+                            <div class="col-lg-6">
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Department)
+                                </dd>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Phone)
+                                </dt>
+                            </div>
+                            <div class="col-lg-6">
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Phone)
+                                </dd>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <dt>
+                                    @Html.DisplayName("Pending")
+                                </dt>
+                            </div>
+                            <div class="col-lg-6">
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.PendingComplaints)
+                                </dd>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <dt>
+                                    @Html.DisplayName("Completed")
+                                </dt>
+                            </div>
+                            <div class="col-lg-6">
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.CompletedComplaints)
+                                </dd>
+                            </div>
+                        </div>
+                        </dl>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

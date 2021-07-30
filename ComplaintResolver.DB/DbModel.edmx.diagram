@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f772c02a48304646acf4a0079d42e587" Name="Diagram1">
+        <EntityTypeShape EntityType="testdbModel.complaint" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="testdbModel.employee" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="testdbModel.employee_role" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="testdbModel.feedback" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="testdbModel.users" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="testdbModel.complaint_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="testdbModel.complaint_ibfk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="testdbModel.fk_feedback_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="testdbModel.employee_role_Cascade" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
