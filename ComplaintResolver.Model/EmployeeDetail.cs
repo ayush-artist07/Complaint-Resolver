@@ -18,7 +18,7 @@ namespace ComplaintResolver.Model
         [Display(Name ="Employee Id")]
         public int EmployeeId { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "First Name Required")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Name Required")]
         [MinLength(1)]
         [MaxLength(100, ErrorMessage = "Can have max 100 characters")]
         public string Name { get; set; }

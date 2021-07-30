@@ -135,6 +135,7 @@
     <Compile Include="users.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\GetIdFromEmail.cs" />
     <Compile Include="Utilities\EncryptPassword.cs" />
     <Compile Include="Utilities\WebRoleProvider.cs" />
   </ItemGroup>

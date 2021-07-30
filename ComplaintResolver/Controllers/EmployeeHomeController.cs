@@ -60,6 +60,50 @@ namespace ComplaintResolver.Controllers
         }
 
         /// <summary>
+        /// to update the details of an employee
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Edit(int id)
+        {
+            string email = GetIdFromEmail.UserId(id);
+
+            if(email == null)
+            {
+                return View("_NoDataFound");
+            }
+            else
+            {
+                var empDetails = emp.GetProfile(email);
+                return View(empDetails);
+            }           
+            
+        }
+
+        [HttpPost]
+        public ActionResult Edit([Bind(Exclude = "PendingComplaints, CompletedComplaints")]EmployeeDetail model)
+        {
+            string message = null;
+            bool status = false;
+            ModelState.Remove("Password");
+
+            if(ModelState.IsValid)
+            {
+                emp.UpdateEmployee(model);
+
+                message = "Employee Record Updated";
+                status = true;
+
+            }
+
+            ViewBag.Message = message;
+            ViewBag.Status = status;
+            return View();
+        }
+
+        /// <summary>
         /// Returns all the employee in the Database
         /// </summary>
         /// <returns></returns>

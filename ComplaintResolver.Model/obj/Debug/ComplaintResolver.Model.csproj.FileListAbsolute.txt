@@ -19,4 +19,3 @@ C:\ASP.Net MVC\1. Final Project\ComplaintResolverApp\ComplaintResolver.Model\obj
 C:\ASP.Net MVC\1. Final Project\ComplaintResolverApp\ComplaintResolver.Model\obj\Debug\ComplaintResolver.Model.csproj.CopyComplete
 C:\ASP.Net MVC\1. Final Project\ComplaintResolverApp\ComplaintResolver.Model\obj\Debug\ComplaintResolver.Model.dll
 C:\ASP.Net MVC\1. Final Project\ComplaintResolverApp\ComplaintResolver.Model\obj\Debug\ComplaintResolver.Model.pdb
-C:\ASP.Net MVC\1. Final Project\ComplaintResolverApp\ComplaintResolver.Model\obj\Debug\ComplaintResolver.Model.csproj.AssemblyReference.cache

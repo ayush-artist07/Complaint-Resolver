@@ -77,6 +77,32 @@ namespace ComplaintResolver.DB.DBOperation
             }
         }
 
+        public int UpdateEmployee(EmployeeDetail model)
+        {
+            using (var context = new testdbEntities1())
+            {
+                var employeeTemp = context.employee.Where(x => x.Employee_Id == model.EmployeeId).FirstOrDefault();
+
+                if(employeeTemp != null)
+                {
+                    employeeTemp.Name = model.Name;
+                    employeeTemp.Email = model.Email;
+                    employeeTemp.Phone = model.Phone;
+                    employeeTemp.Country = Convert.ToString(model.employeecountry);
+                    employeeTemp.Department = Convert.ToString(model.Department);
+
+                    var empRole = employeeTemp.employee_role.Where(x => x.Employee_Id == model.EmployeeId).FirstOrDefault();
+
+                    empRole.Role =Convert.ToString(model.employeerole.Role); 
+                }
+
+                context.SaveChanges();
+                return employeeTemp.Employee_Id;
+            }
+        }
+
+
+
         /// <summary>
         /// Verifies the credential entered by employee for login does exist or not
         /// </summary>
