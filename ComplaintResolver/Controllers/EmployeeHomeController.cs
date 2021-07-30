@@ -42,7 +42,7 @@ namespace ComplaintResolver.Controllers
         {
             bool isDeleted = emp.DeleteEmployee(id);
 
-            return RedirectToAction("AllComplaints");
+            return RedirectToAction("AllEmployees");
         }
 
         /// <summary>

@@ -6,7 +6,7 @@
 
 <h2>AllComplaints</h2>
 
-<table class="table mt-3" id="tableId">
+<table class="table mt-3 demotbl" id="tableId">
     <thead>
         <tr>
             <th>
@@ -27,7 +27,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayName("See Details")
+            </th>
+            
         </tr>
     </thead>
 
@@ -54,7 +57,7 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", "UserHome", new { id = item.Complaint_id }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Details", "Details", "UserHome", new { id = item.Complaint_id }, new { @class = "btn btn-success" })
                 </td>
             </tr>
         </tbody>
@@ -65,44 +68,7 @@
 
 @section Css{
     <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
-
-    <style>
-
-        /*Using CSS for table*/
-        .demotbl {
-            border: 0px solid #69899F;
-        }
-
-        .demotbl th {
-            padding: 15px;
-            margin-left: 10px;
-            color: black;
-            border-bottom: 3px solid #9ED929;
-            background-color: steelblue !important;
-            background: -webkit-gradient( linear, left bottom, left top, color-stop(0.02, rgb(123,192,67)), color-stop(0.51, rgb(139,198,66)), color-stop(0.87, rgb(158,217,41)) );
-            background: -moz-linear-gradient( center bottom, rgb(123,192,67) 3%, rgb(139,198,66) 52%, rgb(158,217,41) 88% );
-            -webkit-border-top-left-radius: 5px;
-            -webkit-border-top-right-radius: 5px;
-            -moz-border-radius: 5px 5px 0px 0px;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-        }
-
-        .demotbl td {
-            width: 100px;
-            margin: 5px;
-            padding: 10px;
-            text-align: center;
-            vertical-align: top;
-            background-color: #D8F0FF;
-            border: 1px solid #BED3AB;
-            -moz-border-radius: 2px;
-            -webkit-border-radius: 2px;
-            border-radius: 2px;
-            color: #666;
-            text-shadow: 1px 1px 1px #fff;
-        }
-    </style>
+    <link href="~/Content/css/TableDesign.css" rel="stylesheet" />
 }
 @section Scripts{
     <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>

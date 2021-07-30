@@ -8,9 +8,9 @@
 <h2>AllEmployees</h2>
 
 <p>
-    @Html.ActionLink("Add New", "Register", "Employee", null, new { @class = "btn btn-info" })
+    @Html.ActionLink("Add New", "Register", "EmployeeAccount", null, new { @class = "btn" , @style = "color:black;background-color:lightgreen"})
 </p>
-<table class="table" id="tableId">
+<table class="table demotbl" id="tableId">
     <thead>
         <tr>
             <th>
@@ -34,7 +34,13 @@
             <th>
                 @Html.DisplayNameFor(model => model.Department)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayName("Edit")
+            </th>
+            <th>
+                @Html.DisplayName("Delete")
+            </th>
+            
         </tr>
     </thead>
 
@@ -66,6 +72,8 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeId }, new { @class = "btn btn-info" })
+            </td>
+        <td>
             @Html.ActionLink("Delete", "DeleteEmployee", new { id = item.EmployeeId }, new { @class = "btn btn-danger" })
         </td>
     </tr>
@@ -76,6 +84,7 @@
 
 @section Css{
     <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/css/TableDesign.css" rel="stylesheet" />
 }
 @section Scripts{
     <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>

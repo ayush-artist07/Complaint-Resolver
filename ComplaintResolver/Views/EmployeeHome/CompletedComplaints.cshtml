@@ -7,7 +7,7 @@
 <h2>Completed Compaints</h2>
 
 
-<table class="table" id ="tableId">
+<table class="table demotbl" id ="tableId">
 
     <thead>
         <tr>
@@ -28,7 +28,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Employee_id)
             </th>
-            <th></th>
+            
         </tr>
     </thead>
 
@@ -39,9 +39,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Complaint_id)
                 </td>
-                <th>
+                <td>
                     @Html.DisplayFor(model => item.ProductType)
-                </th>
+                </td>
 
                 <td>
                     @Html.DisplayFor(modelItem => item.Date_assigned)
@@ -63,6 +63,7 @@
 
 @section Css{
     <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/css/TableDesign.css" rel="stylesheet" />
 }
 @section Scripts{
     <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>

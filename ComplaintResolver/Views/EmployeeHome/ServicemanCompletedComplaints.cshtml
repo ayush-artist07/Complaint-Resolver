@@ -7,7 +7,7 @@
 <h2>Completed Complaints</h2>
 
 
-<table class="table">
+<table class="table mt-3 demotbl" id="tableId">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Complaint_id)
@@ -56,3 +56,19 @@
     }
 
 </table>
+@section Css{
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/css/TableDesign.css" rel="stylesheet" />
+}
+@section Scripts{
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('#tableId').DataTable();
+        });
+
+    </script>
+}
