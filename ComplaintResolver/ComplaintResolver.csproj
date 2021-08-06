@@ -448,6 +448,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EmployeeAccountController.cs" />
     <Compile Include="Controllers\EmployeeHomeController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\UserAccountController.cs" />
     <Compile Include="Controllers\UserHomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -490,6 +491,7 @@
     <Content Include="Scripts\jquery-3.6.0.min.map" />
     <Content Include="Views\EmployeeHome\Edit.cshtml" />
     <Content Include="Views\EmployeeHome\Reply.cshtml" />
+    <Content Include="Views\Error\PageNotFound.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
