@@ -77,6 +77,11 @@ namespace ComplaintResolver.DB.DBOperation
             }
         }
 
+        /// <summary>
+        /// Updates changes made to the Employee record
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public int UpdateEmployee(EmployeeDetail model)
         {
             using (var context = new testdbEntities1())
@@ -93,14 +98,17 @@ namespace ComplaintResolver.DB.DBOperation
 
                     var empRole = employeeTemp.employee_role.Where(x => x.Employee_Id == model.EmployeeId).FirstOrDefault();
 
-                    empRole.Role =Convert.ToString(model.employeerole.Role); 
+                    empRole.Role =Convert.ToString(model.employeerole.Role);
+                }
+                else
+                {
+                    return 0;
                 }
 
                 context.SaveChanges();
                 return employeeTemp.Employee_Id;
             }
         }
-
 
 
         /// <summary>

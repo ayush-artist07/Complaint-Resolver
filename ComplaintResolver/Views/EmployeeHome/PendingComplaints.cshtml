@@ -47,7 +47,7 @@
             
                 @if (User.IsInRole("Serviceman"))
                 {<td>
-    @Html.ActionLink("Reply", "Reply", "UserHome", new { id = item.Complaint_id }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Reply", "Reply", "EmployeeHome", new { id = item.Complaint_id }, new { @class = "btn btn-primary" })
 </td>
     }
 

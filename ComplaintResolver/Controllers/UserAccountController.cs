@@ -77,7 +77,7 @@ namespace ComplaintResolver.Controllers
             }
             else
             {
-                message = "Some bugs";
+                message = "Please fill the form again as it has some errors";
             }
 
             ViewBag.Message = message;

@@ -14,10 +14,12 @@ namespace ComplaintResolver.Controllers
     {
         // GET: EmployeeHome
         EmployeeRepositry emp = null;
+        ComplaintRepositry complaint = null;
 
         public EmployeeHomeController()
         {
             emp = new EmployeeRepositry();
+            complaint = new ComplaintRepositry();
         }
 
         /// <summary>
@@ -103,6 +105,44 @@ namespace ComplaintResolver.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Complaints are replied throgh this view
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize(Roles = "Serviceman")]
+        public ActionResult Reply(int id)
+        {
+            var result = complaint.GetComplaint(id);
+
+            if(result == null)
+            {
+                throw new Exception();
+            }
+
+            return View(result);
+        }
+
+        [HttpPost]
+        public ActionResult Reply(ComplaintForm model)
+        {
+            string message = null;
+
+            bool hasReplied = complaint.AddReply(model);
+
+            if (hasReplied == false)
+            {
+                message = "Changes unSucessfull";
+                return RedirectToAction("Error");
+            }
+
+            message = "Change Sucessfull";
+
+            ViewBag.Status = hasReplied;
+            ViewBag.Message = message;
+            return View();
+        }
         /// <summary>
         /// Returns all the employee in the Database
         /// </summary>

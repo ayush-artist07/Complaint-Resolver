@@ -132,38 +132,7 @@ namespace ComplaintResolver.Controllers
             return View();
         }
 
-        /// <summary>
-        /// Complaints are replied throgh this view
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Authorize(Roles = "Serviceman")]
-        public ActionResult Reply(int id)
-        {
-            var result = complaint.GetComplaint(id);
-            return View(result);
-        }
-
-        [HttpPost]
-        public ActionResult Reply(ComplaintForm model)
-        {
-            string message = null;
-
-            bool hasReplied = complaint.AddReply(model);
-
-            if (hasReplied == false)
-            {
-                message = "Changes unSucessfull";
-                return RedirectToAction("Error");
-            }
-
-            message = "Change Sucessfull";            
-
-            ViewBag.Status = hasReplied;
-            ViewBag.Message = message;
-            return View();
-        }
+        
 
         /// <summary>
         /// To add feedbackon the solved complaints
