@@ -3,11 +3,9 @@
 @{
     ViewBag.Title = "GetPendingComplaints";
 }
-
-
 <h1> Pending Complaints</h1>
 
-<table class="table">
+<table class="table demotbl">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Complaint_id)
@@ -22,7 +20,6 @@
         <th>
             @Html.DisplayNameFor(model => model.ComplaintDescription)
         </th>
-
 
         <th></th>
     </tr>
@@ -45,10 +42,15 @@
 
 
             <td>
-                @Html.ActionLink("Details", "DetailsPending","UserHome", new { id = item.Complaint_id }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Details", "DetailsPending", "UserHome", new { id = item.Complaint_id }, new { @class = "btn btn-info" })
             </td>
         </tr>
     }
 
 </table>
+
+@section Css{
+    <link href="~/Content/css/TableDesign.css" rel="stylesheet" />
+
+}
 

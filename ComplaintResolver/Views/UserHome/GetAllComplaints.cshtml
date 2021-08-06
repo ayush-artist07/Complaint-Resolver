@@ -4,10 +4,10 @@
     ViewBag.Title = "All Complaints";
 }
 
-<h2>Index</h2>
+<h2 class="mb-3">All Complaints</h2>
 
 
-<table class="table" id="tableId">
+<table class="table demotbl" id="tableId">
     <thead>
         <tr>
             <th>
@@ -25,6 +25,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
@@ -68,6 +69,8 @@
 </table>
 @section Css{
     <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+        <link href="~/Content/css/TableDesign.css" rel="stylesheet" />
+    
 }
 @section Scripts{
     <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
