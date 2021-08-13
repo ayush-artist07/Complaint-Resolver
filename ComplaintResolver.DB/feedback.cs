@@ -16,7 +16,7 @@ namespace ComplaintResolver.DB
     {
         public int Feedback_Id { get; set; }
         public string Message { get; set; }
-        public int Complaint_Id { get; set; }
+        public Nullable<int> Complaint_Id { get; set; }
     
         public virtual complaint complaint { get; set; }
     }

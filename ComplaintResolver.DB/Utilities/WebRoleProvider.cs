@@ -38,7 +38,7 @@ namespace ComplaintResolver.DB.Utilities
 
         public override string[] GetRolesForUser(string username)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 var result = (from employee in context.employee
                               join role in context.employee_role on employee.Employee_Id equals role.Employee_Id

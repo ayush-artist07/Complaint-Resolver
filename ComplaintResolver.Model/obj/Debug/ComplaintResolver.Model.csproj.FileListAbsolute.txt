@@ -20,3 +20,13 @@ C:\ASP.Net MVC\1. Final Project\ComplaintResolverApp\ComplaintResolver.Model\obj
 C:\ASP.Net MVC\1. Final Project\ComplaintResolverApp\ComplaintResolver.Model\obj\Debug\ComplaintResolver.Model.dll
 C:\ASP.Net MVC\1. Final Project\ComplaintResolverApp\ComplaintResolver.Model\obj\Debug\ComplaintResolver.Model.pdb
 C:\ASP.Net MVC\1. Final Project\ComplaintResolverApp\ComplaintResolver.Model\obj\Debug\ComplaintResolver.Model.csproj.AssemblyReference.cache
+E:\ComplaintResolver\ayush-artist07\Complaint-Resolver\ComplaintResolver.Model\bin\Debug\ComplaintResolver.Model.dll
+E:\ComplaintResolver\ayush-artist07\Complaint-Resolver\ComplaintResolver.Model\bin\Debug\ComplaintResolver.Model.pdb
+E:\ComplaintResolver\ayush-artist07\Complaint-Resolver\ComplaintResolver.Model\bin\Debug\EntityFramework.dll
+E:\ComplaintResolver\ayush-artist07\Complaint-Resolver\ComplaintResolver.Model\bin\Debug\EntityFramework.SqlServer.dll
+E:\ComplaintResolver\ayush-artist07\Complaint-Resolver\ComplaintResolver.Model\bin\Debug\EntityFramework.xml
+E:\ComplaintResolver\ayush-artist07\Complaint-Resolver\ComplaintResolver.Model\bin\Debug\EntityFramework.SqlServer.xml
+E:\ComplaintResolver\ayush-artist07\Complaint-Resolver\ComplaintResolver.Model\obj\Debug\ComplaintResolver.Model.csproj.CoreCompileInputs.cache
+E:\ComplaintResolver\ayush-artist07\Complaint-Resolver\ComplaintResolver.Model\obj\Debug\ComplaintResolver.Model.csproj.CopyComplete
+E:\ComplaintResolver\ayush-artist07\Complaint-Resolver\ComplaintResolver.Model\obj\Debug\ComplaintResolver.Model.dll
+E:\ComplaintResolver\ayush-artist07\Complaint-Resolver\ComplaintResolver.Model\obj\Debug\ComplaintResolver.Model.pdb

@@ -13,10 +13,10 @@ namespace ComplaintResolver.DB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class testdbEntities1 : DbContext
+    public partial class testdbEntities : DbContext
     {
-        public testdbEntities1()
-            : base("name=testdbEntities1")
+        public testdbEntities()
+            : base("name=testdbEntities")
         {
         }
     

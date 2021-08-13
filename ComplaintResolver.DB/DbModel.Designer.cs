@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\ASP.Net MVC\1. Final Project\ComplaintResolverApp\ComplaintResolver.DB\DbModel.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\ComplaintResolver\ayush-artist07\Complaint-Resolver\ComplaintResolver.DB\DbModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -17,7 +17,7 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns></returns>
         public int AddComplaints(ComplaintForm model)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 //get the email of the user from the ComplaintForm
                 string email = model.User;
@@ -25,7 +25,7 @@ namespace ComplaintResolver.DB.DBOperation
                 //to get the UserId of the Logged in User
                 var userId = (from user in context.users
                                 where user.EmailId == email
-                                select user.UserId).First();
+                                select user.User_Id).First();
 
                 //Complaint is for the Product of type
                 string productType = Convert.ToString(model.ProductType);
@@ -46,12 +46,12 @@ namespace ComplaintResolver.DB.DBOperation
                 complaint c = new complaint()
                 {
                     User_Id = userId,
-                    Date_assigned = DateTime.Now,
+                    Date_Assigned = DateTime.Now,
                     ProductType = Convert.ToString(model.ProductType),
                     ComplaintType = Convert.ToString(model.ComplaintType),
                     ComplaintDescription = model.ComplaintDescription,
                     PhoneNumber = model.PhoneNumber,
-                    Employee_id = employeeWithComplaint,
+                    Employee_Id = employeeWithComplaint,
                     ReplyComments = "Not Available",
                     Status = Convert.ToString(ComplaintStatus.Assigned)
                 };
@@ -61,7 +61,7 @@ namespace ComplaintResolver.DB.DBOperation
 
                 return c.Complaint_Id;
             }
-        }
+        } 
 
         /// <summary>
         /// Reply to the Complaint given by user is added to the Complaint table in database
@@ -70,7 +70,7 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns></returns>
         public bool AddReply(ComplaintForm model)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 bool isReplied = false;
                 //selects the complaint for which the reply is added
@@ -108,7 +108,7 @@ namespace ComplaintResolver.DB.DBOperation
         /// <param name="model"></param>
         public void AddFeedback(Feedback model)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 feedback x = new feedback()
                 {
@@ -128,12 +128,12 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns>List of Complaints by a user</returns>
         public List<ComplaintForm> GetAllComplaint(string email)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 //to find the User whose all complaints needs to be extracted
                 var userId =    (from user in context.users
                                 where user.EmailId == email
-                                select user.UserId).First();
+                                select user.User_Id).First();
                 
                 var complaintCount = context.complaint.Where(x => x.User_Id == userId).FirstOrDefault();
 
@@ -146,14 +146,14 @@ namespace ComplaintResolver.DB.DBOperation
                     var userDetails = userComplaints.Select(x => new Model.ComplaintForm()
                     {
                         Complaint_id = x.Complaint_Id,
-                        User_Id = x.User_Id,
-                        Date_assigned = x.Date_assigned,
+                        User_Id = (int)x.User_Id,
+                        Date_assigned = x.Date_Assigned,
                         ComplaintDescription = x.ComplaintDescription,
                         PhoneNumber = x.PhoneNumber,
-                        Employee_id = x.Employee_id,
+                        Employee_id =(int) x.Employee_Id,
                         Employee_Name = (from employee in context.employee
-                                         join comp in context.complaint on employee.Employee_Id equals comp.Employee_id
-                                         where employee.Employee_Id == x.Employee_id
+                                         join comp in context.complaint on employee.Employee_Id equals comp.Employee_Id
+                                         where employee.Employee_Id == x.Employee_Id
                                          select employee.Name).First(),
                         ReplyComments = x.ReplyComments,
                         ComplaintType = (ComplaintType)Enum.Parse(typeof(ComplaintType), x.ComplaintType),
@@ -179,7 +179,7 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns>Detals of the Complaints</returns>
         public ComplaintForm GetComplaint(int id)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
 
                 var userComplaintsTemporary = context.complaint.Where(x => x.Complaint_Id == id).FirstOrDefault();
@@ -189,10 +189,10 @@ namespace ComplaintResolver.DB.DBOperation
 
                     //to get the employeeId with the given complaint Id 
                     var employeeId = context.complaint.Where(x => x.Complaint_Id == id)
-                                                    .Select(x => x.Employee_id).First();
+                                                    .Select(x => x.Employee_Id).First();
 
                     var employeeName = (from employee in context.employee
-                                        join comp in context.complaint on employee.Employee_Id equals comp.Employee_id
+                                        join comp in context.complaint on employee.Employee_Id equals comp.Employee_Id
                                         where employee.Employee_Id == employeeId
                                         select employee.Name).FirstOrDefault();
 
@@ -202,11 +202,11 @@ namespace ComplaintResolver.DB.DBOperation
                     {
                         Complaint_id = id,
                         Employee_Name = employeeName,
-                        User_Id = userComplaintsTemporary.User_Id,
-                        Date_assigned = userComplaintsTemporary.Date_assigned,
+                        User_Id = (int)userComplaintsTemporary.User_Id,
+                        Date_assigned = userComplaintsTemporary.Date_Assigned,
                         ComplaintDescription = userComplaintsTemporary.ComplaintDescription,
                         PhoneNumber = userComplaintsTemporary.PhoneNumber,
-                        Employee_id = userComplaintsTemporary.Employee_id,
+                        Employee_id = (int)userComplaintsTemporary.Employee_Id,
                         ReplyComments = userComplaintsTemporary.ReplyComments,
                         ComplaintType = (ComplaintType)Enum.Parse(typeof(ComplaintType), userComplaintsTemporary.ComplaintType),
                         ProductType = (EmployeeDepartment)Enum.Parse(typeof(EmployeeDepartment), userComplaintsTemporary.ProductType),
@@ -230,12 +230,12 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns></returns>
         public List<ComplaintForm> GetPendingComplaint(string email)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
 
                 var userId = (from user in context.users
                               where user.EmailId == email
-                              select user.UserId).First();
+                              select user.User_Id).First();
 
                 var value = context.complaint.Where(x => x.User_Id == userId).FirstOrDefault();
 
@@ -248,14 +248,14 @@ namespace ComplaintResolver.DB.DBOperation
                     var result = userComplaintsTemporary.Select(x => new Model.ComplaintForm()
                     {
                         Complaint_id = x.Complaint_Id,
-                        User_Id = x.User_Id,
-                        Date_assigned = x.Date_assigned,
+                        User_Id = (int)x.User_Id,
+                        Date_assigned = x.Date_Assigned,
                         ComplaintDescription = x.ComplaintDescription,
                         PhoneNumber = x.PhoneNumber,
-                        Employee_id = x.Employee_id,
+                        Employee_id = (int)x.Employee_Id,
                         Employee_Name = (from employee in context.employee
-                                         join comp in context.complaint on employee.Employee_Id equals comp.Employee_id
-                                         where employee.Employee_Id == x.Employee_id
+                                         join comp in context.complaint on employee.Employee_Id equals comp.Employee_Id
+                                         where employee.Employee_Id == x.Employee_Id
                                          select employee.Name).First(),
                         ReplyComments = x.ReplyComments,
                         ComplaintType = (ComplaintType)Enum.Parse(typeof(ComplaintType), x.ComplaintType),

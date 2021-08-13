@@ -17,7 +17,7 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns>true if email exists else false</returns>
         public bool DoesEmailExists(string email)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 var v = context.users.Where(x => x.EmailId == email).FirstOrDefault();
 
@@ -32,7 +32,7 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns>User ID</returns>
         public int AddUser(UserDetail model)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 users u = new users()
                 {
@@ -48,7 +48,7 @@ namespace ComplaintResolver.DB.DBOperation
                 context.users.Add(u);
                 context.SaveChanges();
 
-                return u.UserId;
+                return u.User_Id;
             }
         }
 
@@ -60,7 +60,7 @@ namespace ComplaintResolver.DB.DBOperation
         public bool VerifyAccount(string id)
         {
             bool status = false;
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 context.Configuration.ValidateOnSaveEnabled = false; // to not recheck confirm password again
 
@@ -86,7 +86,7 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns>true if login credentials are right else false</returns>
         public bool Check(Login login)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 bool status = false;
                 var email = context.users.Where(x => x.EmailId == login.EmailId).FirstOrDefault();

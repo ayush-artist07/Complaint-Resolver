@@ -18,7 +18,7 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns>true if email exists else false </returns>
         public bool DoesEmailExists(string email)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 var v = context.employee.Where(x => x.Email == email).FirstOrDefault();
 
@@ -33,7 +33,7 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns>Employee Id</returns>
         public int AddEmployee(EmployeeDetail model)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 employee emp = new employee()
                 {
@@ -62,7 +62,7 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns>Role Id</returns>
         public int AddRole(int id, EmployeeDetail model)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 employee_role emp = new employee_role()
                 {
@@ -84,7 +84,7 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns></returns>
         public int UpdateEmployee(EmployeeDetail model)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 var employeeTemp = context.employee.Where(x => x.Employee_Id == model.EmployeeId).FirstOrDefault();
 
@@ -118,7 +118,7 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns> true if user exists else false</returns>
         public bool check(Login login)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 bool status = false;
                 var email = context.employee.Where(x => x.Email == login.EmailId).FirstOrDefault();
@@ -141,7 +141,7 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns></returns>
         public EmployeeDetail GetProfile(string email)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 var employee = context.employee.Where(x => x.Email == email).FirstOrDefault();
 
@@ -168,7 +168,7 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns></returns>
         public bool DeleteEmployee(int id)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 var employeeInfo = context.employee.FirstOrDefault(x => x.Employee_Id == id);
 
@@ -188,7 +188,7 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns></returns>
         public List<EmployeeDetail> GetAllEmployees()
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 var employee = context.employee.ToList();
 
@@ -215,11 +215,11 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns></returns>
         public List<ComplaintForm> GetAllComplaint()
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 var value = (from employee in context.employee
-                             join comp in context.complaint on employee.Employee_Id equals comp.Employee_id
-                             select new { Id = comp.Complaint_Id, Name = employee.Name, Date = comp.Date_assigned, Phone = comp.PhoneNumber, Product = comp.ProductType, Status = comp.Status }).ToList();
+                             join comp in context.complaint on employee.Employee_Id equals comp.Employee_Id
+                             select new { Id = comp.Complaint_Id, Name = employee.Name, Date = comp.Date_Assigned, Phone = comp.PhoneNumber, Product = comp.ProductType, Status = comp.Status }).ToList();
 
                 if (value != null)
                 {
@@ -250,7 +250,7 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns>List of Complaints</returns>
         public List<ComplaintForm> GetPendingComplaints()
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 var allPendingComplaintsTemp = context.complaint.Where(x => x.Status != "Solved").ToList();
 
@@ -263,8 +263,8 @@ namespace ComplaintResolver.DB.DBOperation
                     var allPendingComplaints = allPendingComplaintsTemp.Select(x => new ComplaintForm()
                     {
                         Complaint_id = x.Complaint_Id,
-                        Employee_id = x.Employee_id,
-                        Date_assigned = x.Date_assigned,
+                        Employee_id =(int) x.Employee_Id,
+                        Date_assigned = x.Date_Assigned,
                         PhoneNumber = x.PhoneNumber,
                         ProductType = (EmployeeDepartment)Enum.Parse(typeof(EmployeeDepartment), x.ProductType)
                     }).ToList();
@@ -280,7 +280,7 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns></returns>
         public List<ComplaintForm> GetCompletedComplaints()
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 var allCompletedComplaintsTemp = context.complaint.Where(x => x.Status == "Solved").ToList();
 
@@ -294,8 +294,8 @@ namespace ComplaintResolver.DB.DBOperation
                     {
 
                         Complaint_id = x.Complaint_Id,
-                        Employee_id = x.Employee_id,
-                        Date_assigned = x.Date_assigned,
+                        Employee_id = (int)x.Employee_Id,
+                        Date_assigned = x.Date_Assigned,
                         PhoneNumber = x.PhoneNumber,
                         ProductType = (EmployeeDepartment)Enum.Parse(typeof(EmployeeDepartment), x.ProductType),
 
@@ -313,12 +313,12 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns></returns>
         public List<ComplaintForm> GetServicemanPendingComplaints(string email)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 var employeeId = context.employee.Where(x => x.Email == email)
                                  .Select(x => x.Employee_Id).FirstOrDefault();
 
-                var complaintsTemp = context.complaint.Where(x => x.Employee_id == employeeId && x.Status != "Solved").ToList();
+                var complaintsTemp = context.complaint.Where(x => x.Employee_Id == employeeId && x.Status != "Solved").ToList();
 
                 if (complaintsTemp == null)
                 {
@@ -329,11 +329,11 @@ namespace ComplaintResolver.DB.DBOperation
                     var complaints = complaintsTemp.Select(x => new Model.ComplaintForm()
                     {
                         Complaint_id = x.Complaint_Id,
-                        User_Id = x.User_Id,
-                        Date_assigned = x.Date_assigned,
+                        User_Id = (int)x.User_Id,
+                        Date_assigned = x.Date_Assigned,
                         ComplaintDescription = x.ComplaintDescription,
                         PhoneNumber = x.PhoneNumber,
-                        Employee_id = x.Employee_id,
+                        Employee_id = (int)x.Employee_Id,
                         ReplyComments = x.ReplyComments == null ? "Not Available" : x.ReplyComments,
                         ComplaintType = (ComplaintType)Enum.Parse(typeof(ComplaintType), x.ComplaintType),
                         ProductType = (EmployeeDepartment)Enum.Parse(typeof(EmployeeDepartment), x.ProductType)
@@ -354,12 +354,12 @@ namespace ComplaintResolver.DB.DBOperation
 
         public List<ComplaintForm> GetServicemanCompletedComplaints(string email)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 var employeeId = context.employee.Where(x => x.Email == email)
                                 .Select(x => x.Employee_Id).FirstOrDefault();
 
-                var complaintsTemp = context.complaint.Where(x => x.Employee_id == employeeId && x.Status == "Solved").ToList();
+                var complaintsTemp = context.complaint.Where(x => x.Employee_Id == employeeId && x.Status == "Solved").ToList();
 
                 if (complaintsTemp == null)
                 {
@@ -370,11 +370,11 @@ namespace ComplaintResolver.DB.DBOperation
                     var complaints = complaintsTemp.Select(x => new Model.ComplaintForm()
                     {
                         Complaint_id = x.Complaint_Id,
-                        User_Id = x.User_Id,
-                        Date_assigned = x.Date_assigned,
+                        User_Id =(int) x.User_Id,
+                        Date_assigned = x.Date_Assigned,
                         ComplaintDescription = x.ComplaintDescription,
                         PhoneNumber = x.PhoneNumber,
-                        Employee_id = x.Employee_id,
+                        Employee_id = (int)x.Employee_Id,
                         ReplyComments = x.ReplyComments == null ? "Not Available" : x.ReplyComments,
                         ComplaintType = (ComplaintType)Enum.Parse(typeof(ComplaintType), x.ComplaintType),
                         ProductType = (EmployeeDepartment)Enum.Parse(typeof(EmployeeDepartment), x.ProductType)
@@ -393,12 +393,12 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns></returns>
         public List<ComplaintForm> GetServicemanAllComplaints(string email)
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 var employeeId = context.employee.Where(x => x.Email == email)
                     .Select(x => x.Employee_Id).FirstOrDefault();
 
-                var complaintsTemp = context.complaint.Where(x => x.Employee_id == employeeId).ToList();
+                var complaintsTemp = context.complaint.Where(x => x.Employee_Id == employeeId).ToList();
 
                 if (complaintsTemp == null)
                 {
@@ -409,11 +409,11 @@ namespace ComplaintResolver.DB.DBOperation
                     var result = complaintsTemp.Select(x => new Model.ComplaintForm()
                     {
                         Complaint_id = x.Complaint_Id,
-                        User_Id = x.User_Id,
-                        Date_assigned = x.Date_assigned,
+                        User_Id =(int) x.User_Id,
+                        Date_assigned = x.Date_Assigned,
                         ComplaintDescription = x.ComplaintDescription,
                         PhoneNumber = x.PhoneNumber,
-                        Employee_id = x.Employee_id,
+                        Employee_id =(int) x.Employee_Id,
                         ReplyComments = x.ReplyComments == null ? "Not Available" : x.ReplyComments,
                         ComplaintType = (ComplaintType)Enum.Parse(typeof(ComplaintType), x.ComplaintType),
                         ProductType = (EmployeeDepartment)Enum.Parse(typeof(EmployeeDepartment), x.ProductType)
@@ -431,13 +431,13 @@ namespace ComplaintResolver.DB.DBOperation
         /// <returns></returns>
         public List<Feedback> GetAllFeedbacks()
         {
-            using (var context = new testdbEntities1())
+            using (var context = new testdbEntities())
             {
                 var value = (from f in context.feedback
                              join c in context.complaint on f.Complaint_Id equals c.Complaint_Id
-                             join e in context.employee on c.Employee_id equals e.Employee_Id
-                             select new { Complaint_Id = c.Complaint_Id, Employee_ID = c.Employee_id, Name = e.Name,
-                                        Date = c.Date_assigned, Product = c.ProductType, Message = f.Message, 
+                             join e in context.employee on c.Employee_Id equals e.Employee_Id
+                             select new { Complaint_Id = c.Complaint_Id, Employee_ID = c.Employee_Id, Name = e.Name,
+                                        Date = c.Date_Assigned, Product = c.ProductType, Message = f.Message, 
                                         Description = c.ComplaintDescription }).ToList();
 
                 if (value != null)
@@ -448,7 +448,7 @@ namespace ComplaintResolver.DB.DBOperation
                         Message = x.Message,
                         complaints = new ComplaintForm()
                         {
-                            Employee_id = x.Employee_ID,
+                            Employee_id = (int)x.Employee_ID,
                             Employee_Name = x.Name,
                             ComplaintDescription = x.Description,
                             ProductType = (EmployeeDepartment)Enum.Parse(typeof(EmployeeDepartment), x.Product),

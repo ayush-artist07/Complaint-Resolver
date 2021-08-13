@@ -20,11 +20,11 @@ namespace ComplaintResolver.DB
             this.complaint = new HashSet<complaint>();
         }
     
-        public int UserId { get; set; }
+        public int User_Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailId { get; set; }
-        public Nullable<System.DateTime> DateOfBirth { get; set; }
+        public System.DateTime DateOfBirth { get; set; }
         public string Password { get; set; }
         public sbyte IsEmailVerified { get; set; }
         public string ActivationCode { get; set; }

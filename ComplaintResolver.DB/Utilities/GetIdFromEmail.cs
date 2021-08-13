@@ -10,7 +10,7 @@ namespace ComplaintResolver.DB.Utilities
     {
         public static string UserId(int userID)
         {
-            using(var context = new testdbEntities1())
+            using(var context = new testdbEntities())
             {
 
                 var employeeEmail = context.employee.Where(x => x.Employee_Id == userID)

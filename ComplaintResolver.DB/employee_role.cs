@@ -15,7 +15,7 @@ namespace ComplaintResolver.DB
     public partial class employee_role
     {
         public int Employee_Role_Id { get; set; }
-        public Nullable<int> Employee_Id { get; set; }
+        public int Employee_Id { get; set; }
         public string Role { get; set; }
     
         public virtual employee employee { get; set; }

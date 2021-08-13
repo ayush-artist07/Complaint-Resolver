@@ -72,9 +72,9 @@ namespace ComplaintResolver.Controllers
         {
             List<ComplaintForm> Usercomplaints = complaint.GetAllComplaint(User.Identity.Name);
 
-            if (Usercomplaints == null)
+            if (Usercomplaints == null || Usercomplaints.Count <= 0)
             {
-                return View("NoDataFound");
+                return View("_NoDataFound");
             }
             return View(Usercomplaints);
 
@@ -88,9 +88,9 @@ namespace ComplaintResolver.Controllers
         {
             List<ComplaintForm> UserPendingComplaints = complaint.GetPendingComplaint(User.Identity.Name);
 
-            if (UserPendingComplaints.Count <= 0)
+            if (UserPendingComplaints == null ||UserPendingComplaints.Count <= 0)
             {
-                return View("NoDataFound");
+                return View("_NoDataFound");
             }
             return View(UserPendingComplaints);
 

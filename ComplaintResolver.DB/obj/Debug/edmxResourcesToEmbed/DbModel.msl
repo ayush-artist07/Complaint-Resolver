@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="testdbModelStoreContainer" CdmEntityContainer="testdbEntities1">
+  <EntityContainerMapping StorageEntityContainer="testdbModelStoreContainer" CdmEntityContainer="testdbEntities">
     <EntitySetMapping Name="complaint">
       <EntityTypeMapping TypeName="testdbModel.complaint">
         <MappingFragment StoreEntitySet="complaint">
+          <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
           <ScalarProperty Name="User_Id" ColumnName="User_Id" />
-          <ScalarProperty Name="Date_assigned" ColumnName="Date_assigned" />
-          <ScalarProperty Name="ProductType" ColumnName="ProductType" />
-          <ScalarProperty Name="ComplaintType" ColumnName="ComplaintType" />
-          <ScalarProperty Name="ComplaintDescription" ColumnName="ComplaintDescription" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-          <ScalarProperty Name="ReplyComments" ColumnName="ReplyComments" />
-          <ScalarProperty Name="Employee_id" ColumnName="Employee_id" />
           <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ReplyComments" ColumnName="ReplyComments" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="ComplaintDescription" ColumnName="ComplaintDescription" />
+          <ScalarProperty Name="ComplaintType" ColumnName="ComplaintType" />
+          <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+          <ScalarProperty Name="Date_Assigned" ColumnName="Date_Assigned" />
           <ScalarProperty Name="Complaint_Id" ColumnName="Complaint_Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -20,47 +20,47 @@
     <EntitySetMapping Name="employee">
       <EntityTypeMapping TypeName="testdbModel.employee">
         <MappingFragment StoreEntitySet="employee">
-          <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="Country" ColumnName="Country" />
-          <ScalarProperty Name="Department" ColumnName="Department" />
-          <ScalarProperty Name="PendingComplaints" ColumnName="PendingComplaints" />
           <ScalarProperty Name="CompletedComplaints" ColumnName="CompletedComplaints" />
+          <ScalarProperty Name="PendingComplaints" ColumnName="PendingComplaints" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="employee_role">
       <EntityTypeMapping TypeName="testdbModel.employee_role">
         <MappingFragment StoreEntitySet="employee_role">
-          <ScalarProperty Name="Employee_Role_Id" ColumnName="Employee_Role_Id" />
-          <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
           <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
+          <ScalarProperty Name="Employee_Role_Id" ColumnName="Employee_Role_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="feedback">
       <EntityTypeMapping TypeName="testdbModel.feedback">
         <MappingFragment StoreEntitySet="feedback">
-          <ScalarProperty Name="Feedback_Id" ColumnName="Feedback_Id" />
-          <ScalarProperty Name="Message" ColumnName="Message" />
           <ScalarProperty Name="Complaint_Id" ColumnName="Complaint_Id" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Feedback_Id" ColumnName="Feedback_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="users">
       <EntityTypeMapping TypeName="testdbModel.users">
         <MappingFragment StoreEntitySet="users">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="IsEmailVerified" ColumnName="IsEmailVerified" />
           <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
+          <ScalarProperty Name="IsEmailVerified" ColumnName="IsEmailVerified" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -4,16 +4,16 @@
     <Key>
       <PropertyRef Name="Complaint_Id" />
     </Key>
-    <Property Name="User_Id" Type="int" Nullable="false" />
-    <Property Name="Date_assigned" Type="timestamp" Precision="0" Nullable="false" />
+    <Property Name="Complaint_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date_Assigned" Type="date" Nullable="false" />
     <Property Name="ProductType" Type="enum" Nullable="false" />
     <Property Name="ComplaintType" Type="enum" Nullable="false" />
     <Property Name="ComplaintDescription" Type="text" />
     <Property Name="PhoneNumber" Type="bigint" Nullable="false" />
     <Property Name="ReplyComments" Type="text" />
-    <Property Name="Employee_id" Type="int" Nullable="false" />
-    <Property Name="Status" Type="enum" />
-    <Property Name="Complaint_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Status" Type="enum" Nullable="false" />
+    <Property Name="User_Id" Type="int" />
+    <Property Name="Employee_Id" Type="int" />
   </EntityType>
   <EntityType Name="employee">
     <Key>
@@ -21,20 +21,20 @@
     </Key>
     <Property Name="Employee_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="125" Nullable="false" />
     <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Phone" Type="bigint" Nullable="false" />
     <Property Name="Country" Type="enum" Nullable="false" />
-    <Property Name="Department" Type="enum" />
-    <Property Name="PendingComplaints" Type="int" Nullable="false" />
-    <Property Name="CompletedComplaints" Type="int" Nullable="false" />
+    <Property Name="Department" Type="enum" Nullable="false" />
+    <Property Name="PendingComplaints" Type="int" />
+    <Property Name="CompletedComplaints" Type="int" />
   </EntityType>
   <EntityType Name="employee_role">
     <Key>
       <PropertyRef Name="Employee_Role_Id" />
     </Key>
     <Property Name="Employee_Role_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Employee_Id" Type="int" />
+    <Property Name="Employee_Id" Type="int" Nullable="false" />
     <Property Name="Role" Type="enum" Nullable="false" />
   </EntityType>
   <EntityType Name="feedback">
@@ -42,50 +42,60 @@
       <PropertyRef Name="Feedback_Id" />
     </Key>
     <Property Name="Feedback_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Message" Type="mediumtext" Nullable="false" />
-    <Property Name="Complaint_Id" Type="int" Nullable="false" />
+    <Property Name="Message" Type="tinytext" />
+    <Property Name="Complaint_Id" Type="int" />
   </EntityType>
   <EntityType Name="users">
     <Key>
-      <PropertyRef Name="UserId" />
+      <PropertyRef Name="User_Id" />
     </Key>
-    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="EmailId" Type="varchar" MaxLength="120" Nullable="false" />
-    <Property Name="DateOfBirth" Type="date" />
-    <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="EmailId" Type="varchar" MaxLength="125" Nullable="false" />
+    <Property Name="DateOfBirth" Type="date" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="45" Nullable="false" />
     <Property Name="IsEmailVerified" Type="tinyint" Nullable="false" />
-    <Property Name="ActivationCode" Type="varchar" MaxLength="36" />
+    <Property Name="ActivationCode" Type="varchar" MaxLength="200" />
   </EntityType>
   <Association Name="complaint_ibfk_1">
-    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
     <End Role="complaint" Type="Self.complaint" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="users">
-        <PropertyRef Name="UserId" />
+        <PropertyRef Name="User_Id" />
       </Principal>
       <Dependent Role="complaint">
         <PropertyRef Name="User_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="complaint_ibfk_3">
-    <End Role="employee" Type="Self.employee" Multiplicity="1" />
+  <Association Name="complaint_ibfk_2">
+    <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
     <End Role="complaint" Type="Self.complaint" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="employee">
         <PropertyRef Name="Employee_Id" />
       </Principal>
       <Dependent Role="complaint">
-        <PropertyRef Name="Employee_id" />
+        <PropertyRef Name="Employee_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="employee_role_Cascade">
-    <End Role="employee" Type="Self.employee" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
+  <Association Name="complaint_ibfk_3">
+    <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
+    <End Role="complaint" Type="Self.complaint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee">
+        <PropertyRef Name="Employee_Id" />
+      </Principal>
+      <Dependent Role="complaint">
+        <PropertyRef Name="Employee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="employee_role_ibfk_1">
+    <End Role="employee" Type="Self.employee" Multiplicity="1" />
     <End Role="employee_role" Type="Self.employee_role" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="employee">
@@ -96,8 +106,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="fk_feedback_Complaint">
-    <End Role="complaint" Type="Self.complaint" Multiplicity="1" />
+  <Association Name="employee_role_ibfk_2">
+    <End Role="employee" Type="Self.employee" Multiplicity="1" />
+    <End Role="employee_role" Type="Self.employee_role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee">
+        <PropertyRef Name="Employee_Id" />
+      </Principal>
+      <Dependent Role="employee_role">
+        <PropertyRef Name="Employee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="feedback_ibfk_1">
+    <End Role="complaint" Type="Self.complaint" Multiplicity="0..1" />
     <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="complaint">
@@ -118,15 +140,23 @@
       <End Role="users" EntitySet="users" />
       <End Role="complaint" EntitySet="complaint" />
     </AssociationSet>
+    <AssociationSet Name="complaint_ibfk_2" Association="Self.complaint_ibfk_2">
+      <End Role="employee" EntitySet="employee" />
+      <End Role="complaint" EntitySet="complaint" />
+    </AssociationSet>
     <AssociationSet Name="complaint_ibfk_3" Association="Self.complaint_ibfk_3">
       <End Role="employee" EntitySet="employee" />
       <End Role="complaint" EntitySet="complaint" />
     </AssociationSet>
-    <AssociationSet Name="employee_role_Cascade" Association="Self.employee_role_Cascade">
+    <AssociationSet Name="employee_role_ibfk_1" Association="Self.employee_role_ibfk_1">
       <End Role="employee" EntitySet="employee" />
       <End Role="employee_role" EntitySet="employee_role" />
     </AssociationSet>
-    <AssociationSet Name="fk_feedback_Complaint" Association="Self.fk_feedback_Complaint">
+    <AssociationSet Name="employee_role_ibfk_2" Association="Self.employee_role_ibfk_2">
+      <End Role="employee" EntitySet="employee" />
+      <End Role="employee_role" EntitySet="employee_role" />
+    </AssociationSet>
+    <AssociationSet Name="feedback_ibfk_1" Association="Self.feedback_ibfk_1">
       <End Role="complaint" EntitySet="complaint" />
       <End Role="feedback" EntitySet="feedback" />
     </AssociationSet>

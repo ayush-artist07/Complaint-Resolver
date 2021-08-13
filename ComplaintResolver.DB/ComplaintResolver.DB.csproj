@@ -151,6 +151,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ComplaintResolver.Model\ComplaintResolver.Model.csproj">
+      <Project>{e6edb8a3-5fb9-403f-b975-70bf573bf314}</Project>
+      <Name>ComplaintResolver.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DbModel.edmx</DependentUpon>
@@ -162,16 +171,6 @@
       <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ComplaintResolver.Model\ComplaintResolver.Model.csproj">
-      <Project>{e6edb8a3-5fb9-403f-b975-70bf573bf314}</Project>
-      <Name>ComplaintResolver.Model</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

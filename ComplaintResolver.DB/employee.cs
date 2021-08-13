@@ -28,8 +28,8 @@ namespace ComplaintResolver.DB
         public long Phone { get; set; }
         public string Country { get; set; }
         public string Department { get; set; }
-        public int PendingComplaints { get; set; }
-        public int CompletedComplaints { get; set; }
+        public Nullable<int> PendingComplaints { get; set; }
+        public Nullable<int> CompletedComplaints { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<complaint> complaint { get; set; }

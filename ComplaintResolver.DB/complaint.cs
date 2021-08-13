@@ -20,16 +20,16 @@ namespace ComplaintResolver.DB
             this.feedback = new HashSet<feedback>();
         }
     
-        public int User_Id { get; set; }
-        public System.DateTime Date_assigned { get; set; }
+        public int Complaint_Id { get; set; }
+        public System.DateTime Date_Assigned { get; set; }
         public string ProductType { get; set; }
         public string ComplaintType { get; set; }
         public string ComplaintDescription { get; set; }
         public long PhoneNumber { get; set; }
         public string ReplyComments { get; set; }
-        public int Employee_id { get; set; }
         public string Status { get; set; }
-        public int Complaint_Id { get; set; }
+        public Nullable<int> User_Id { get; set; }
+        public Nullable<int> Employee_Id { get; set; }
     
         public virtual users users { get; set; }
         public virtual employee employee { get; set; }
